@@ -1,0 +1,106 @@
+{% extends 'news/base.html' %}
+{% load static %}
+{% block content %}
+
+   <!-- masonry
+   ================================================== -->
+   <section id="bricks">
+
+   	<div class="row masonry">
+
+   		<!-- brick-wrapper -->
+         <div class="bricks-wrapper">
+
+         	<div class="grid-sizer"></div>
+
+         	<div class="brick entry featured-grid animate-this">
+         		<div class="entry-content">
+         			<div id="featured-post-slider" class="flexslider">
+			   			<ul class="slides">
+
+                            {% for news in news_list %}
+				   			<li>
+				   				<div class="featured-post-slide">
+
+						   			<div class="post-background" style="background-image:url('{{ news.image.url }}');"></div>
+
+								   	<div class="overlay"></div>			   		
+
+								   	<div class="post-content">
+
+								   		<ul class="entry-meta">
+												<li>{{ news.publish_time }}</li>
+												<li><a href="#" >{{ news.categories }}</a></li>
+                                        </ul>
+
+                                        <h1 class="slide-title"><a href="{{ news.get_absolute_url }}" title="">{{ news.title | truncatewords:5 }}</a></h1>
+
+								   	</div>
+				   				</div>
+				   			</li> <!-- /slide -->
+                            {% endfor %}
+
+
+
+				   		</ul> <!-- end slides -->
+				   	</div> <!-- end featured-post-slider -->        			
+         		</div> <!-- end entry content -->         		
+         	</div>
+
+         	{% for news in latest_news %}
+
+            <article class="brick entry format-standard animate-this">
+
+               <div class="entry-thumb">
+                  <a href="{{ news.get_absolute_url }}" class="thumb-link">
+	                  <img src="{{ news.image.url }}" alt="ferris wheel">
+                  </a>
+               </div>
+
+               <div class="entry-text">
+               	<div class="entry-header">
+
+               		<div class="entry-meta">
+               			<span class="cat-links">
+               			</span>			
+               		</div>
+
+               		<h1 class="entry-title"><a href="{{ news.get_absolute_url }}">{{ news.title }}</a></h1>
+               		
+               	</div>
+						<div class="entry-excerpt">
+							{{ news.body | truncatewords:20 }}
+						</div>
+               </div>
+               
+        		</article> <!-- end article -->
+            {% endfor %}
+
+
+         </div> <!-- end brick-wrapper --> 
+
+   	</div> <!-- end row -->
+
+   	<div class="row">
+   		
+   		<nav class="pagination">
+		      <span class="page-numbers prev inactive">Prev</span>
+		   	<span class="page-numbers current">1</span>
+		   	<a href="#" class="page-numbers">2</a>
+		      <a href="#" class="page-numbers">3</a>
+		      <a href="#" class="page-numbers">4</a>
+		      <a href="#" class="page-numbers">5</a>
+		      <a href="#" class="page-numbers">6</a>
+		      <a href="#" class="page-numbers">7</a>
+		      <a href="#" class="page-numbers">8</a>
+		      <a href="#" class="page-numbers">9</a>
+		   	<a href="#" class="page-numbers next">Next</a>
+	      </nav>
+
+   	</div>
+
+   </section> <!-- end bricks -->
+
+{% endblock content %}
+   <!-- footer
+   ================================================== -->
